@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8"
+matrix:
+  include:
+    - python: "3.8"
+      dist: xenial
+install:
+  - pip install masonite-cli
+  - craft install
+script: python -m pytest
