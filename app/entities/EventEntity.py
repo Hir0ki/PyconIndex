@@ -1,8 +1,6 @@
 from app.models.Event import Event
 from datetime import date
-from app.models.Event import Event
 from orator.exceptions.query import QueryException
-from masonite import Cache
 from wsgi import container
 import json
 
@@ -10,9 +8,8 @@ import json
 class EventEntity:
     """ Entity class for Events """
 
-    def __init__(self, event: Event):
-        self.event = event
-        self.cache = container.make(Cache)
+    def __init__(self):
+        self.event = container.make(Event)
     def create(
         self,
         name: str,

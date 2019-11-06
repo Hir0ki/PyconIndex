@@ -5,8 +5,9 @@ from masonite.response import Response
 from masonite.view import View
 from masonite.controllers import Controller
 from masonite import app
-from app.models.Event import Event
+from app.entities.EventEntity import EventEntity
 from datetime import date
+
 
 class AdminEventController(Controller):
     """AdminEventController Controller Class."""
@@ -19,19 +20,28 @@ class AdminEventController(Controller):
         """
         self.request = request
 
-    def show(self, view: View, event: Event):
-        return view.render('Event')
+    def show(self, view: View, event: EventEntity):
+        event = EventEntity()
+        return view.render("Event", {"events": event.get_all()})
 
-    def store(self, request: Request, event: Event, response: Response):
+    def store(self, request: Request, response: Response, event: EventEntity):
+        event = EventEntity()
         try:
-            start_date=date.fromisoformat(request.input('start_date'))
+            start_date = date.fromisoformat(request.input("start_date"))
         except ValueError:
             start_date = None
         try:
-            end_date=date.fromisoformat(request.input('end_date'))
+            end_date = date.fromisoformat(request.input("end_date"))
         except ValueError:
             end_date = None
 
-        
+        event.create(
+            name=request.input("event_name"),
+            youtube_url=request.input("youtube_url"),
+            website_url=request.input("website_url"),
+            start_date=start_date,
+            end_date=end_date,
+        )
 
-        return response.redirect('/admin/event')
+        return response.redirect("/admin/event")
+

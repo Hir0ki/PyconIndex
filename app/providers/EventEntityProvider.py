@@ -1,16 +1,16 @@
-"""A Event Service Provider."""
+"""A EventEntity Service Provider."""
 
 from masonite.provider import ServiceProvider
-from app.models.Event import Event
+from app.entities.EventEntity import EventEntity
 
-class Event(ServiceProvider):
+class EventEntityProvider(ServiceProvider):
     """Provides Services To The Service Container."""
 
     wsgi = False
 
     def register(self):
         """Register objects into the Service Container."""
-        self.app.bind('Event', Event)
+        self.app.bind('EventEntity', EventEntity)
 
     def boot(self):
         """Boots services required by the container."""

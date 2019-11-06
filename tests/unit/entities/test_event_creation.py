@@ -1,9 +1,9 @@
 """Testevent_creation Testcase."""
 
 from masonite.testing import TestCase
-from app.Entities.EventEntity import EventEntity
-from app.models.Event import Event
+from app.entities.EventEntity import EventEntity
 from datetime import date, timedelta
+from app.models.Event import Event
 
 class Testevent_creation(TestCase):
 
@@ -15,7 +15,7 @@ class Testevent_creation(TestCase):
         on the parent class like below.
         """
         super().setUp()
-        self.eventEntity = EventEntity(Event())
+        self.eventEntity = EventEntity()
 
     def setUpFactories(self):
         """This runs when the test class first starts up.

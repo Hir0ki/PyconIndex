@@ -1,8 +1,6 @@
 """Testevent Testcase."""
 from masonite.testing import TestCase
-from config.factories import factory
-from app.Entities.EventEntity import EventEntity
-from app.models.Event import Event
+from app.entities.EventEntity import EventEntity
 from masonite import Cache
 from wsgi import container
 
@@ -24,12 +22,10 @@ class TestEventSelection(TestCase):
         This does not run before every test case. Use this method to
         set your database up.
         """
-        #        factory(Event, 8).create()
-        # self.make(Event, self.events_factory, 8)
         from faker import Faker
 
         faker = Faker()
-        event = EventEntity(Event())
+        event = EventEntity()
         self.youtube_url = 'https://youtube.com'
         for n in range(0, 8):
             event.create(
@@ -43,7 +39,7 @@ class TestEventSelection(TestCase):
 
     def test_get_all(self):
         cache = container.make(Cache)
-        eventEntity = EventEntity(Event())
+        eventEntity = EventEntity()
         events = eventEntity.get_all()
         for event in events:
             if event.youtube_url != self.youtube_url:

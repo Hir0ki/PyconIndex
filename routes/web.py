@@ -5,7 +5,7 @@ from masonite.routes import Get, Post
 ROUTES = [
     Get('/', 'WelcomeController@show').name('welcome'),
     Get('/admin/event', 'AdminEventController@show').name('admin'),
-    Post('/admin/event', 'AdminEventController@store').name('createevent'),
+    Post('/admin/event', 'AdminEventController@store').name('create_event'),
 ]
 
 ROUTES = ROUTES + [
