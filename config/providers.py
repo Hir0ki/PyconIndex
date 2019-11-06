@@ -7,7 +7,8 @@ from masonite.providers import (AppProvider, BroadcastProvider, CacheProvider,
                                 UploadProvider, ViewProvider,
                                 WhitenoiseProvider)
 from masonite.validation.providers.ValidationProvider import ValidationProvider
-
+"""Third Party libaries"""
+from masonite.logging.providers import LoggingProvider
 """Providers List
 Providers are a simple way to remove or add functionality for Masonite
 The providers in this list are either ran on server start or when a
@@ -36,7 +37,7 @@ PROVIDERS = [
     ValidationProvider,
 
     # Third Party Providers
-
+    LoggingProvider,
     # Application Providers
 
 ]
